@@ -12,10 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <tensorview/tensorview.h>
 #include <boost/geometry.hpp>
-#include <spconv/nms_functor.h>
 #include <torch/script.h>
 #include <vector>
+
+namespace spconv {
+namespace functor{
+template <typename Device, typename T, typename Index>
+struct NonMaxSupressionFunctor {
+  Index operator()(const Device &d, tv::TensorView<Index> keep,
+                   tv::TensorView<const T> boxes, T threshold, T eps);
+};
+
+template <typename Device, typename T, typename Index>
+struct rotateNonMaxSupressionFunctor {
+  Index operator()(const Device &d, tv::TensorView<Index> keep,
+                   tv::TensorView<const T> boxCorners,
+                   tv::TensorView<const T> standupIoU, T threshold);
+};
+
+}
+}
+
 
 namespace spconv {
 

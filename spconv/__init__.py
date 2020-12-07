@@ -28,7 +28,7 @@ from spconv.ops import ConvAlgo
 from spconv.pool import SparseMaxPool2d, SparseMaxPool3d
 from spconv.tables import AddTable, ConcatTable, JoinTable
 
-_LIB_FILE_NAME = "libspconv.so"
+_LIB_FILE_NAME = "libspconv.dylib"
 if platform.system() == "Windows":
     _LIB_FILE_NAME = "spconv.dll"
 _LIB_PATH = str(Path(__file__).parent / _LIB_FILE_NAME)
